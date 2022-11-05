@@ -16,8 +16,6 @@ const MainTitle = styled.h1`
 
 const DateContainer = styled.div``;
 
-const Date = styled.span``;
-
 interface Props {
   dashboard?: boolean;
 }
@@ -28,7 +26,9 @@ const DashBoardTitle: React.FC<Props> = ({ dashboard }) => {
       <MainTitle>대시보드</MainTitle>
       {dashboard && (
         <DateContainer>
-          <Date>123:123</Date>
+          <select name="select" id="select">
+            <option value="asd">12123</option>
+          </select>
         </DateContainer>
       )}
     </DashBoardContainer>
