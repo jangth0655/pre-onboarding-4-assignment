@@ -1,5 +1,4 @@
-import axios, { AxiosInstance } from 'axios';
-import { Report } from 'model/interface';
+import axios from 'axios';
 
 type Params = {
   'X-Amz-Algorithm': 'AWS4-HMAC-SHA256';

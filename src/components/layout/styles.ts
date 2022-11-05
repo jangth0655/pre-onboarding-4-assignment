@@ -7,6 +7,7 @@ const Section = styled.section`
 `;
 const Main = styled.main`
   padding: 2.5rem;
+  width: 1120px;
 `;
 
 const S = {

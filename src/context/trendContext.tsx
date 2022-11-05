@@ -1,6 +1,4 @@
-import Trend from 'api/trend';
 import TrendClient from 'api/trendClient';
-import { Report } from 'model/interface';
 import React, { createContext, useContext, useState } from 'react';
 
 interface Props {
