@@ -1,4 +1,9 @@
+import { useQuery } from '@tanstack/react-query';
+import { useTrendApi } from 'context/trendContext';
+import { useState } from 'react';
 import styled from 'styled-components';
+import ApexChart from 'react-apexcharts';
+import { Report } from 'model/interface';
 
 const TotalStatusContainer = styled.div``;
 
@@ -15,10 +20,39 @@ const StatusBoard = styled.div`
 `;
 
 const TotalStatus = () => {
+  const [isLoading, setLoading] = useState(true);
+  const trend = useTrendApi();
+  const { data: trendData } = useQuery<Report>(
+    ['trend'],
+    async () => await trend?.getList()
+  );
+
+  setTimeout(() => {
+    setLoading(false);
+  }, 5000);
+
   return (
     <TotalStatusContainer>
       <StatusTitle>통합 광고 현황</StatusTitle>
-      <StatusBoard />
+      <StatusBoard>
+        <ApexChart
+          type="line"
+          series={[
+            {
+              data: trendData?.report.daily.map((item) => item?.roas) || [],
+            },
+            {
+              data: trendData?.report.daily.map((item) => item?.click) || [],
+            },
+          ]}
+          options={{
+            chart: {
+              height: 200,
+              width: 200,
+            },
+          }}
+        />
+      </StatusBoard>
     </TotalStatusContainer>
   );
 };

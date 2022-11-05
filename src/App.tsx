@@ -3,12 +3,17 @@ import { ThemeProvider } from 'styled-components';
 import Theme from './styles/theme';
 import GlobalStyle from 'styles/GlobalStyle';
 import { Outlet } from 'react-router';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
+const queryClient = new QueryClient();
 
 const App = () => {
   return (
     <ThemeProvider theme={Theme}>
-      <GlobalStyle />
-      <Outlet />
+      <QueryClientProvider client={queryClient}>
+        <GlobalStyle />
+        <Outlet />
+      </QueryClientProvider>
     </ThemeProvider>
   );
 };
