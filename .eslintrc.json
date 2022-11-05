@@ -44,6 +44,20 @@
     "react/react-in-jsx-scope": 0,
     "object-curly-newline": 0,
     "arrow-parens": 0,
-    "camelcase": 0
+    "camelcase": 0,
+    "jsx-a11y/click-events-have-key-events": 0,
+    "jsx-a11y/no-noninteractive-element-interactions": 0,
+    "react/jsx-no-constructed-context-values": 0,
+    "import/order": 0,
+    "import/no-useless-path-segments": 0,
+    "import/prefer-default-export": 0,
+    "@typescript-eslint/lines-between-class-members": 0,
+    "@typescript-eslint/no-use-before-define": 0,
+    "no-useless-return": 0,
+    "@typescript-eslint/return-await": 0,
+    "@typescript-eslint/no-shadow": 0,
+    "react-hooks/exhaustive-deps": 0,
+    "@typescript-eslint/no-explicit-any": 0,
+    "@typescript-eslint/no-unused-vars": 0
   }
 }
