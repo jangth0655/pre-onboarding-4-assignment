@@ -1,12 +1,15 @@
 import styled from 'styled-components';
-import { SubTitle } from './Shared';
+import { SelectBox, SubTitle } from './Shared';
 
 const Section = styled.section`
   width: 20rem;
-  min-height: 100vh;
   background-color: white;
   padding-left: 2.5rem;
   box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  @media screen and (max-width: 1024px) {
+    width: 15rem;
+    padding-left: 1rem;
+  }
 `;
 
 const LogoContainer = styled.div`
@@ -18,10 +21,14 @@ const LogoContainer = styled.div`
 const Logo = styled.img`
   width: 7.75rem;
   height: 1.875rem;
+  @media screen and (max-width: 1024px) {
+    width: 5rem;
+    height: 1rem;
+  }
 `;
 
 const Bar = styled.div`
-  width: 15rem;
+  width: 90%;
   height: 1px;
   background-color: rgb(209 213 219);
   margin-bottom: 3.75rem;
@@ -42,14 +49,11 @@ const ServiceTitle = styled(SubTitle)`
   color: rgb(107 114 128);
 `;
 
-const SelectBox = styled.div`
-  padding: 0 0.5rem;
-  width: 240px;
-  height: 60px;
+const ServiceBox = styled(SelectBox)`
   border: 1px solid rgb(75 85 99);
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
+  @media screen and (max-width: 1536px) {
+    width: 80%;
+  } ;
 `;
 
 const Select = styled.select`
@@ -60,7 +64,7 @@ const Select = styled.select`
 `;
 
 const NavigateContainer = styled.div`
-  width: 240px;
+  width: 15rem;
 `;
 const AdCenterTitle = styled(SubTitle)``;
 
@@ -71,7 +75,7 @@ const S = {
   Bar,
   SelectContainer,
   ServiceTitle,
-  SelectBox,
+  ServiceBox,
   Select,
   NavigateContainer,
   AdCenterTitle,

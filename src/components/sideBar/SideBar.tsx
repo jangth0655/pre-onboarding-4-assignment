@@ -11,12 +11,12 @@ const SideBar = () => {
       <S.Bar />
       <S.SelectContainer>
         <S.ServiceTitle>서비스</S.ServiceTitle>
-        <S.SelectBox>
+        <S.ServiceBox>
           <S.Select name="list" id="select">
             <option value="madUp">매드업</option>
             <option value="addService">서비스 추가하기</option>
           </S.Select>
-        </S.SelectBox>
+        </S.ServiceBox>
       </S.SelectContainer>
       <S.NavigateContainer>
         <S.AdCenterTitle>광고 센터</S.AdCenterTitle>

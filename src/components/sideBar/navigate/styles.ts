@@ -1,11 +1,11 @@
 import styled from 'styled-components';
+import { SelectBox } from '../Shared';
 
-const PageContainer = styled.div`
-  padding: 0 0.5rem;
-  height: 60px;
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
+const PageContainer = styled(SelectBox)`
+  border: 0;
+  @media screen and (max-width: 1536px) {
+    width: 80%;
+  } ;
 `;
 
 const IconBox = styled.div`
