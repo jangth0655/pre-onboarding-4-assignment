@@ -1,5 +1,11 @@
+import Layout from 'components/layout/Layout';
+
 const AdManagement = () => {
-  return <h1>Management</h1>;
+  return (
+    <Layout>
+      <h1>AdManagement</h1>
+    </Layout>
+  );
 };
 
 export default AdManagement;

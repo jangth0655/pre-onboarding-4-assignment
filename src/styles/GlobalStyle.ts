@@ -6,6 +6,11 @@ const GlobalStyle = createGlobalStyle`
   * {
     box-sizing: border-box;
   }
+
+  body { 
+    font-family: 'Roboto', sans-serif;
+  }
+
   a {
   color: inherit;
   text-decoration: none;
