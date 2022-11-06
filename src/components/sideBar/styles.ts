@@ -6,8 +6,8 @@ const Section = styled.section`
   background-color: white;
   padding-left: 2.5rem;
   box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  @media screen and (max-width: 1024px) {
-    width: 10rem;
+  @media screen and (max-width: 1280px) {
+    width: 40%;
     padding-left: 1rem;
   }
 `;
@@ -51,7 +51,7 @@ const ServiceTitle = styled(SubTitle)`
 
 const ServiceBox = styled(SelectBox)`
   border: 1px solid rgb(75 85 99);
-  @media screen and (max-width: 1536px) {
+  @media screen and (max-width: 1280px) {
     width: 80%;
   } ;
 `;

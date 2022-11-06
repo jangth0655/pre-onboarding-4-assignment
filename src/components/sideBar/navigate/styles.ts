@@ -3,7 +3,7 @@ import { SelectBox } from '../Shared';
 
 const PageContainer = styled(SelectBox)`
   border: 0;
-  @media screen and (max-width: 1536px) {
+  @media screen and (max-width: 1280px) {
     width: 80%;
   } ;
 `;
