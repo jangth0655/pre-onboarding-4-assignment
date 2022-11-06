@@ -1,3 +1,12 @@
+import {
+  STANDARD_DAY,
+  trendDateSelector,
+  trendListAtom,
+  trendListSelector,
+} from 'atoms/trendAtom';
+import { useFilterDate } from 'hooks/useTrend';
+import { useCallback, useEffect, useState } from 'react';
+import { constSelector, useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 
 const DashBoardContainer = styled.div`
@@ -20,14 +29,31 @@ interface Props {
   dashboard?: boolean;
 }
 
-const DashBoardTitle: React.FC<Props> = ({ dashboard }) => {
+interface Props {
+  totalDataLength?: number;
+}
+
+const DashBoardTitle: React.FC<Props> = ({ totalDataLength }) => {
+  const filterDate = useFilterDate();
+  const [dateState, setDateState] = useState(0);
+
+  const handleDateState = () => {
+    setDateState((prev) => +prev);
+  };
+
   return (
     <DashBoardContainer>
       <MainTitle>대시보드</MainTitle>
-      {dashboard && (
+      {totalDataLength && (
         <DateContainer>
           <select name="select" id="select">
-            <option value="asd">12123</option>
+            {filterDate?.map((item, i) => (
+              <option
+                value={dateState}
+                onChange={handleDateState}
+                key={item.id}
+              >{`${item.date[0]}~${item.date[item.date.length - 1]}`}</option>
+            ))}
           </select>
         </DateContainer>
       )}

@@ -1,4 +1,4 @@
-import { Daily } from './tyeps';
+import { Daily } from './types';
 
 export interface Report {
   report: {
