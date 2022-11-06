@@ -1,19 +1,7 @@
 import { CompareData } from 'model/types';
-import styled from 'styled-components';
-
-const Container = styled.div`
-  border: 1px solid black;
-  width: 304px;
-  display: flex;
-  align-items: center;
-`;
-const TitleContainer = styled.div``;
-const Title = styled.span``;
-const GapContainer = styled.div``;
-const TotalSumBox = styled.div``;
-const TotalSum = styled.span``;
-const GapBox = styled.div``;
-const Gap = styled.span``;
+import { AiFillCaretDown, AiFillCaretUp } from 'react-icons/ai';
+import { formatData } from 'utils';
+import S from './styles';
 
 interface Props {
   item: CompareData;
@@ -21,19 +9,31 @@ interface Props {
 
 const CompareBoard: React.FC<Props> = ({ item }) => {
   return (
-    <Container>
-      <TitleContainer>
-        <Title>{item.title}</Title>
-      </TitleContainer>
-      <GapContainer>
-        <TotalSumBox>
-          <TotalSum>{item.current}</TotalSum>
-        </TotalSumBox>
-        <GapBox>
-          <Gap>{item.gap === 0 ? '' : item.gap}</Gap>
-        </GapBox>
-      </GapContainer>
-    </Container>
+    <S.Container>
+      <S.TitleContainer>
+        <S.Title>{item.title}</S.Title>
+      </S.TitleContainer>
+      <S.GapContainer>
+        <S.TotalSumBox>
+          <S.TotalSum>{item.currentSum}</S.TotalSum>
+        </S.TotalSumBox>
+        <S.GapWithIconBox>
+          {item.isIncrease ? (
+            <S.Icon>
+              <AiFillCaretUp style={{ color: 'green' }} />
+            </S.Icon>
+          ) : (
+            <S.Icon>
+              <AiFillCaretDown style={{ color: 'red' }} />
+            </S.Icon>
+          )}
+
+          <S.GapBox>
+            <S.Gap>{item.gap === 0 ? '' : item.gap}</S.Gap>
+          </S.GapBox>
+        </S.GapWithIconBox>
+      </S.GapContainer>
+    </S.Container>
   );
 };
 export default CompareBoard;

@@ -15,8 +15,8 @@ export type Daily = {
 export type CompareData = {
   gap?: number;
   isIncrease?: boolean;
-  current?: number;
-  title?: DataTitle;
+  currentSum: number;
+  title: DataTitle;
 };
 
 export type DataTitle =

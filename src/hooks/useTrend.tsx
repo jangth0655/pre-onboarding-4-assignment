@@ -50,22 +50,22 @@ export const useCompareData = () => {
   );
 
   const cvResponse = compareData(
-    previewFilteredList.map((item) => item.cvr),
-    currentFilteredList.map((item) => item.cvr),
+    previewFilteredList.map((item) => item.convValue),
+    currentFilteredList.map((item) => item.convValue),
     '전환 수'
   );
 
   const convValueResponse = compareData(
-    previewFilteredList.map((item) => item.convValue),
-    currentFilteredList.map((item) => item.convValue),
+    previewFilteredList.map((item) => item.cost),
+    currentFilteredList.map((item) => item.cost),
     '매출'
   );
 
   return [
-    clickResponse,
     roasResponse,
     costResponse,
     impResponse,
+    clickResponse,
     cvResponse,
     convValueResponse,
   ];
@@ -84,10 +84,12 @@ const compareData = (
     (prev, current) => prev + current,
     currentData[0]
   );
+
+  const gap = currentSum / STANDARD_DAY - previewSum / STANDARD_DAY;
   return {
-    gap: +(currentSum - previewSum).toFixed(0),
-    isIncrease: previewData < currentData,
-    current: +currentSum.toFixed(0),
+    gap: +gap.toFixed(0),
+    isIncrease: !(gap < 0),
+    currentSum: +currentSum.toFixed(0),
     title,
   };
 };
