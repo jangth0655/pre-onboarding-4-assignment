@@ -51,17 +51,6 @@ const ChartGraph = styled.div`
 const Chart = () => {
   return (
     <ChartContainer>
-      <ChartDataContainer>
-        <ChartData>
-          <NameBox>
-            <span>Title</span>
-          </NameBox>
-          <DataBox>
-            <Data>697%</Data>
-            <Indicator>19%</Indicator>
-          </DataBox>
-        </ChartData>
-      </ChartDataContainer>
       <ChartGraph>
         {/*  <ApexChart
           type="line"

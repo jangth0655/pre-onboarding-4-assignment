@@ -1,12 +1,7 @@
-import {
-  STANDARD_DAY,
-  trendDateSelector,
-  trendListAtom,
-  trendListSelector,
-} from 'atoms/trendAtom';
+import { trendDateAtom } from 'atoms/trendAtom';
 import { useFilterDate } from 'hooks/useTrend';
-import { useCallback, useEffect, useState } from 'react';
-import { constSelector, useRecoilValue } from 'recoil';
+import React, { useState } from 'react';
+import { useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
 
 const DashBoardContainer = styled.div`
@@ -26,19 +21,22 @@ const MainTitle = styled.h1`
 const DateContainer = styled.div``;
 
 interface Props {
+  totalDataLength?: number;
   dashboard?: boolean;
 }
 
-interface Props {
-  totalDataLength?: number;
-}
-
-const DashBoardTitle: React.FC<Props> = ({ totalDataLength }) => {
+const DashBoardTitle: React.FC<Props> = ({ totalDataLength, dashboard }) => {
   const filterDate = useFilterDate();
+
+  const setTrendDate = useSetRecoilState(trendDateAtom);
   const [dateState, setDateState] = useState(0);
 
-  const handleDateState = () => {
-    setDateState((prev) => +prev);
+  const handleDateState = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const {
+      currentTarget: { value },
+    } = e;
+    setDateState(+value);
+    setTrendDate(+value);
   };
 
   return (
@@ -46,13 +44,17 @@ const DashBoardTitle: React.FC<Props> = ({ totalDataLength }) => {
       <MainTitle>대시보드</MainTitle>
       {totalDataLength && (
         <DateContainer>
-          <select name="select" id="select">
+          <select
+            itemType="number"
+            value={dateState}
+            onChange={handleDateState}
+            name="select"
+            id="select"
+          >
             {filterDate?.map((item, i) => (
-              <option
-                value={dateState}
-                onChange={handleDateState}
-                key={item.id}
-              >{`${item.date[0]}~${item.date[item.date.length - 1]}`}</option>
+              <option value={i} key={item.id}>{`${item.date[0]}~${
+                item.date[item.date.length - 1]
+              }`}</option>
             ))}
           </select>
         </DateContainer>

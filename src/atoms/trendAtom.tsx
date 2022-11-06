@@ -3,7 +3,7 @@ import { Daily } from '../model/types';
 
 export const STANDARD_DAY = 3;
 
-export const trendDate = atom({
+export const trendDateAtom = atom({
   key: 'date',
   default: 0,
 });
@@ -25,11 +25,20 @@ export const trendDateSelector = selector({
 export const trendListSelector = selector({
   key: 'trendSelector',
   get: ({ get }) => {
-    const state = get(trendDate);
+    const state = get(trendDateAtom);
+    const previewDate = state === 0 ? 0 : state - 1;
     const list = get(trendListAtom);
-    return list.slice(
+    const previewFilteredList = list.slice(
+      previewDate * STANDARD_DAY,
+      previewDate * STANDARD_DAY + STANDARD_DAY
+    );
+    const currentFilteredList = list.slice(
       state * STANDARD_DAY,
       state * STANDARD_DAY + STANDARD_DAY
     );
+    return {
+      previewFilteredList,
+      currentFilteredList,
+    };
   },
 });
