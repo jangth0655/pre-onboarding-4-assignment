@@ -3,8 +3,8 @@ import {
   trendDateSelector,
   trendListSelector,
 } from 'atoms/trendAtom';
-import { CompareData, DataTitle } from 'model/types';
 import { useRecoilValue } from 'recoil';
+import { compareData } from 'utils';
 
 export const useFilterDate = () => {
   const totalDate = useRecoilValue(trendDateSelector);
@@ -69,27 +69,4 @@ export const useCompareData = () => {
     cvResponse,
     convValueResponse,
   ];
-};
-
-const compareData = (
-  previewData: number[],
-  currentData: number[],
-  title: DataTitle
-): CompareData => {
-  const previewSum = previewData?.reduce(
-    (prev, current) => prev + current,
-    previewData[0]
-  );
-  const currentSum = currentData?.reduce(
-    (prev, current) => prev + current,
-    currentData[0]
-  );
-
-  const gap = currentSum / STANDARD_DAY - previewSum / STANDARD_DAY;
-  return {
-    gap: +gap.toFixed(0),
-    isIncrease: !(gap < 0),
-    currentSum: +currentSum.toFixed(0),
-    title,
-  };
 };

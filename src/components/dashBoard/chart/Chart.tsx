@@ -1,44 +1,12 @@
 import styled from 'styled-components';
 import ApexChart from 'react-apexcharts';
+import { useState } from 'react';
+import { DataTitle } from 'model/types';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { SelectedTitleAtom } from 'atoms/trendAtom';
 
 const ChartContainer = styled.div`
   width: 100%;
-`;
-
-const ChartDataContainer = styled.div`
-  height: 40%;
-  margin-bottom: 100px;
-`;
-
-const ChartData = styled.div`
-  border: 1px solid rgb(229 231 235);
-  border-radius: 8px;
-  width: 300px;
-  height: 79px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 0.5rem 1rem;
-`;
-
-const NameBox = styled.div`
-  width: 100%;
-  margin-bottom: 0.5rem;
-  font-size: 0.8rem;
-  & span {
-    color: rgb(107 114 128);
-  }
-`;
-const DataBox = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
-const Data = styled.span``;
-const Indicator = styled.span`
-  font-size: 0.7rem;
 `;
 
 const ChartGraph = styled.div`
@@ -48,9 +16,67 @@ const ChartGraph = styled.div`
   width: 100%;
 `;
 
+type DailyTitleObj = {
+  title: DataTitle;
+  id: 'roas' | 'convValue' | 'cost' | 'click' | 'imp';
+};
+const dailyTitleObj: DailyTitleObj[] = [
+  { title: 'ROAS', id: 'roas' },
+  { title: '광고비', id: 'cost' },
+  { title: '클릭수', id: 'click' },
+  { title: '전환 수', id: 'convValue' },
+  { title: '노출 수', id: 'imp' },
+];
+
 const Chart = () => {
+  const [firstSelect, setFirstSelect] = useState<string>('ROAS');
+  const [optionalSelect, setOptionalSelect] = useState<string>('클릭수');
+  const [active, setActive] = useState(true);
+  const setSelectTitle = useSetRecoilState(SelectedTitleAtom);
+  const selectedTittle = useRecoilValue(SelectedTitleAtom);
+  console.log(selectedTittle);
+
+  const handleFirstSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const {
+      currentTarget: { value },
+    } = e;
+    if (optionalSelect === value) return;
+    setFirstSelect(value);
+    setSelectTitle(value as DataTitle);
+    setActive(false);
+  };
+
+  const handleOptionalSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const {
+      currentTarget: { value },
+    } = e;
+    if (firstSelect === value) return;
+    setSelectTitle(value as DataTitle);
+    setOptionalSelect(value);
+  };
+
   return (
     <ChartContainer>
+      <div>
+        <select onChange={handleFirstSelect} value={firstSelect}>
+          {dailyTitleObj.map((title) => (
+            <option key={title.title} value={title.title}>
+              {title.title}
+            </option>
+          ))}
+        </select>
+        <select
+          disabled={active}
+          onChange={handleOptionalSelect}
+          value={optionalSelect}
+        >
+          {dailyTitleObj.map((title) => (
+            <option value={title.title} key={title.title}>
+              {title.title}
+            </option>
+          ))}
+        </select>
+      </div>
       <ChartGraph>
         {/*  <ApexChart
           type="line"

@@ -1,5 +1,5 @@
 import { atom, selector } from 'recoil';
-import { Daily } from '../model/types';
+import { Daily, DataTitle } from '../model/types';
 
 export const STANDARD_DAY = 3;
 
@@ -41,4 +41,9 @@ export const trendListSelector = selector({
       currentFilteredList,
     };
   },
+});
+
+export const SelectedTitleAtom = atom<DataTitle>({
+  key: 'selectedTitle',
+  default: 'ROAS',
 });
