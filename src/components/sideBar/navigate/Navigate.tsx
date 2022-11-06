@@ -1,31 +1,34 @@
-import { isDashBoardAtom } from 'atoms/navigateAotm';
 import { HiDesktopComputer, HiOutlineChartBar } from 'react-icons/hi';
-import { useRecoilState } from 'recoil';
+import { Link, useMatch } from 'react-router-dom';
+
 import S from './styles';
 
 const backgroundColor = 'rgb(229 231 235)';
 const Navigate: React.FC = () => {
-  const [isDashBoard, setIsDashBoard] = useRecoilState(isDashBoardAtom);
+  const dashBoardPath = !!useMatch('/');
+  const adManagement = !!useMatch('/management');
   return (
     <>
-      <S.PageContainer
-        onClick={() => setIsDashBoard(true)}
-        style={{ backgroundColor: isDashBoard ? backgroundColor : '' }}
-      >
-        <S.IconBox>
-          <HiDesktopComputer />
-        </S.IconBox>
-        <S.PageName>대시보드</S.PageName>
-      </S.PageContainer>
-      <S.PageContainer
-        onClick={() => setIsDashBoard(false)}
-        style={{ backgroundColor: !isDashBoard ? backgroundColor : '' }}
-      >
-        <S.IconBox>
-          <HiOutlineChartBar />
-        </S.IconBox>
-        <S.PageName>광고 현황</S.PageName>
-      </S.PageContainer>
+      <Link to="/">
+        <S.PageContainer
+          style={{ backgroundColor: dashBoardPath ? backgroundColor : '' }}
+        >
+          <S.IconBox>
+            <HiDesktopComputer />
+          </S.IconBox>
+          <S.PageName>대시보드</S.PageName>
+        </S.PageContainer>
+      </Link>
+      <Link to="/management">
+        <S.PageContainer
+          style={{ backgroundColor: adManagement ? backgroundColor : '' }}
+        >
+          <S.IconBox>
+            <HiOutlineChartBar />
+          </S.IconBox>
+          <S.PageName>광고 현황</S.PageName>
+        </S.PageContainer>
+      </Link>
     </>
   );
 };

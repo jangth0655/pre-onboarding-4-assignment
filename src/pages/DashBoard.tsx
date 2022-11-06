@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { trend } from 'api/apiClient';
-import { trendListAtom } from 'atoms/dataAtom';
+import { trendListAtom } from 'atoms/trendAtom';
 import DashBoardTitle from 'components/dashBoard/DashBoardTitle';
 import TotalStatus from 'components/dashBoard/totalStatus/TotalStatus';
 import Layout from 'components/layout/Layout';
